@@ -29,11 +29,15 @@
 
           shellHook = ''
             gem_home=$(mktemp -d)
+            gemrc_file="$gem_home/.gemrc"
             echo "Using temporary folder for gems... $gem_home"
+
+            touch $gemrc_file
+            echo "gem: --no-document" > $gemrc_file
 
             export GEM_HOME=$gem_home
             export GEM_PATH=$GEM_HOME
-            export GEMRC=${./.gemrc}
+            export GEMRC=$gemrc_file
             export PATH=$GEM_HOME/bin:$PATH
             export name="ruby-shell-temp: $gem_home"
           '';
