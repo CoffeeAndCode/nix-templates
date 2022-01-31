@@ -4,8 +4,8 @@ This repo contains useful templates for scaffolding various nix projects.
 
 ## Example
 
-Create a flake based on the `ruby-shell-temp` template in the current directory:
+Create a flake based on the `ruby-temp` template in the current directory:
 
 ```
-nix flake init -t github:coffeeandcode/nix-templates#ruby-shell-temp
+nix flake init -t github:coffeeandcode/nix-templates#ruby-temp
 ```

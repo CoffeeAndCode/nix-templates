@@ -39,7 +39,7 @@
             export GEM_PATH=$GEM_HOME
             export GEMRC=$gemrc_file
             export PATH=$GEM_HOME/bin:$PATH
-            export name="ruby-shell-temp: $gem_home"
+            export name="ruby-temp: $gem_home"
           '';
         };
       });
