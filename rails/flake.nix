@@ -30,15 +30,19 @@
             zlib
           ];
           shellHook = ''
-            mkdir -p .nix-gems
+            bundler_version=2.3.6
             gem_home="$PWD/.nix-gems"
+
+            mkdir -p "$gem_home"
             echo "Using custom folder for gems... $gem_home"
 
             export GEM_HOME=$gem_home
             export GEM_PATH=$GEM_HOME
             export PATH=$GEM_HOME/bin:$PATH
 
-            gem list -i ^bundler$ || gem install bundler --no-document
+            if [[ $(gem list --installed --version "$bundler_version" bundler) == "false" ]]; then
+              gem install bundler --no-document --version "$bundler_version"
+            fi
             bundle config --local build.nokogiri --use-system-libraries
             bundle config --local path vendor/cache
           '';
