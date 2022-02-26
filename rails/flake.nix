@@ -10,6 +10,10 @@
     flake-utils.lib.eachDefaultSystem (system:
       let
         pkgs = nixpkgs.legacyPackages.${system};
+        unfree_pkgs = import nixpkgs {
+          inherit system;
+          config = { allowUnfree = true; };
+        };
         ruby = pkgs.ruby;
         bundler = pkgs.buildRubyGem rec {
           inherit ruby;
@@ -29,6 +33,11 @@
         };
       in {
         apps = {
+          brakeman = {
+            type = "app";
+            program = "${unfree_pkgs.brakeman}/bin/brakeman";
+          };
+
           bundler = {
             type = "app";
             program = "${bundler}/bin/bundler";
