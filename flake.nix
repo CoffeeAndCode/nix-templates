@@ -9,6 +9,12 @@
           "A bundix enhanced Rails project with Postgres, Node, Yarn, etc.";
       };
 
+      rails-devenv = {
+        path = ./rails-devenv;
+        description =
+          "Devenv + Rails with Postgres, Node, Yarn, etc.";
+      };
+
       rails-shell = {
         path = ./rails-shell;
         description =
