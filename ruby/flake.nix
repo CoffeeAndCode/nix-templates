@@ -2,7 +2,7 @@
   description = "project-name";
 
   inputs = {
-    bundix.url = "github:inscapist/bundix";
+    bundix.url = "github:CoffeeAndCode/bundix";
     bundix.inputs.nixpkgs.follows = "nixpkgs";
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
     ruby-nix.url = "github:inscapist/ruby-nix";
