@@ -21,6 +21,12 @@
           "A shell for Rails projects with Postgres, Node, Yarn, etc.";
       };
 
+      ruby = {
+        path = ./ruby;
+        description =
+          "A flake that provides a `setup` app and a dev shell environment.";
+      };
+
       ruby-shell-temp = {
         path = ./ruby-shell-temp;
         description =
