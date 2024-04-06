@@ -2,17 +2,24 @@
   description = "project-name";
 
   inputs = {
+    bundix.url = "github:inscapist/bundix";
+    bundix.inputs.nixpkgs.follows = "nixpkgs";
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
     ruby-nix.url = "github:inscapist/ruby-nix";
     ruby-nix.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, nixpkgs, ruby-nix }:
+  outputs = { self, bundix, nixpkgs, ruby-nix }:
     let
       systems = [ "x86_64-linux" ];
       forAllSystems = function: nixpkgs.lib.genAttrs systems (system:
         function (import nixpkgs {
           inherit system;
+          overlays = [
+            (final: prev: {
+              bundix = bundix.packages.${system}.default;
+            })
+          ];
         }));
     in
     {
@@ -48,7 +55,7 @@
           {
             default = pkgs.mkShell
               {
-                buildInputs = [ env ];
+                buildInputs = [ pkgs.bundix env ];
               };
           });
 
